@@ -18,8 +18,7 @@ def print_banner():
     line = Colors.PURPLE + Colors.BOLD + "=" * 31 + Colors.ENDC
     title = Colors.PURPLE + Colors.BOLD + "   SectorX- Discord Cloner   " + Colors.ENDC
     print(f"{line}\n{title}\n{line}\n")
-print("How to use: Discord user token to read the server channels, discord bot to create the channels and other stuff." \
-"discord bot need to have admin on the server you want to clone to <3")
+    
 ticker = itertools.cycle(['◐', '◓', '◑', '◒'])
 def log(message, color=Colors.DARKBLUE, end="\n"):
     ts = time.strftime("%H:%M:%S")
