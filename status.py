@@ -16,7 +16,7 @@ print(f"{PINK} SectorX - Status Rotator {RESET}\n")
 
 # Ask how many statuses
 try:
-    total = int(input("How many statuses you want? "))
+    total = int(input("How many different status you want? "))
 except:
     print("Invalid number")
     exit()
